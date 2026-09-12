@@ -46,38 +46,22 @@ export function Seccao({
               }`}
             >
               <span>{dados.index}</span>
-              {/* A régua cresce quando a secção entra: marca o início da
-                  secção sem precisar de mais um título. */}
-              <motion.span
+              <span
                 aria-hidden
-                className="h-px w-12 origin-left bg-accent"
-                initial={{ scaleX: semMovimento ? 1 : 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true, margin: "-15% 0px" }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className={`h-px w-10 ${escura ? "bg-night-rule" : "bg-rule"}`}
               />
               {dados.kicker ? <span>{t(dados.kicker, idioma)}</span> : null}
             </div>
           </Revelar>
 
-          {/* O título sobe por trás de uma máscara, em vez de aparecer a
-              esmorecer: num tipo de letra deste tamanho lê-se melhor.
-              Quem observa a entrada em ecrã é o h2, não o span: dentro da
-              máscara o span começa fora do recorte e nunca chegava a contar
-              como visível, deixando o título escondido para sempre. */}
           <motion.h2
-            className="display-lg mt-4 -mb-[0.18em] overflow-hidden pb-[0.18em]"
-            initial={semMovimento ? undefined : "fora"}
-            whileInView="dentro"
+            className="display-lg mt-3"
+            initial={semMovimento ? undefined : { opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <motion.span
-              className="inline-block"
-              variants={{ fora: { y: "110%" }, dentro: { y: 0 } }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {titulo}
-            </motion.span>
+            {titulo}
           </motion.h2>
         </header>
         <div className="mt-14 md:mt-20">{children}</div>

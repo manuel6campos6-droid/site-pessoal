@@ -24,12 +24,12 @@ export function FinancialProject({ projecto }: { projecto: ProjectoFinanceiro })
           {temTitulo ? (
             <h3 className="display-md mt-4">{t(projecto.title, idioma)}</h3>
           ) : (
-            <p className="mono-label mt-4 text-accent">[FINANCIAL PROJECT]</p>
+            <p className="marcador mt-4">[FINANCIAL PROJECT]</p>
           )}
           {temConteudo(projecto.description) ? (
             <p className="prose-body mt-4">{t(projecto.description, idioma)}</p>
           ) : (
-            <p className="mono-label mt-4 text-accent">[ADD CONTENT]</p>
+            <p className="marcador mt-4">[ADD CONTENT]</p>
           )}
         </div>
         {projecto.files && projecto.files.length > 0 ? (

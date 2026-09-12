@@ -28,7 +28,7 @@ export function ProjectCard({ projecto }: { projecto: Projecto }) {
       {temConteudo(projecto.tagline) ? (
         <p className="mt-2 max-w-md text-ink-2">{t(projecto.tagline, idioma)}</p>
       ) : (
-        <p className="mono-label mt-2 text-accent">[ADD CONTENT]</p>
+        <p className="marcador mt-2">[ADD CONTENT]</p>
       )}
     </Link>
   );

@@ -37,7 +37,7 @@ export function TechProject({
         {temTitulo ? (
           <h3 className="display-md mt-4">{t(projecto.title, idioma)}</h3>
         ) : (
-          <p className="mono-label mt-4 text-accent">[TECH PROJECT]</p>
+          <p className="marcador mt-4">[TECH PROJECT]</p>
         )}
         {temConteudo(projecto.description) ? (
           <p
@@ -46,7 +46,7 @@ export function TechProject({
             {t(projecto.description, idioma)}
           </p>
         ) : (
-          <p className="mono-label mt-4 text-accent">[ADD CONTENT]</p>
+          <p className="marcador mt-4">[ADD CONTENT]</p>
         )}
 
         {projecto.stack && projecto.stack.length > 0 ? (

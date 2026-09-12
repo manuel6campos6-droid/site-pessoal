@@ -41,7 +41,7 @@ export function Figura({
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="mono-label text-accent">{marcador}</span>
+            <span className="marcador">{marcador}</span>
           </div>
         )}
       </div>

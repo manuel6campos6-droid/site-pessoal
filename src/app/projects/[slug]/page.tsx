@@ -4,6 +4,7 @@ import { Cromo } from "@/components/Cromo";
 import { ProjectDetail } from "@/components/ProjectDetail";
 import { Rodape } from "@/components/Rodape";
 import { Transicao } from "@/components/Transicao";
+import { perfil } from "@/data/profile";
 import { projectoPorSlug, projectos } from "@/data/projects";
 
 // As páginas são estáticas: os projectos vivem em ficheiros, não numa base.
@@ -20,7 +21,7 @@ export async function generateMetadata({
   const projecto = projectoPorSlug(slug);
   if (!projecto) return {};
   return {
-    title: `${projecto.name} — [ADD CONTENT]`,
+    title: `${projecto.name} · ${perfil.name}`,
     description: projecto.tagline?.en ?? "[ADD CONTENT]",
   };
 }

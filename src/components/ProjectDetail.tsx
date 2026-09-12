@@ -95,7 +95,7 @@ export function ProjectDetail({ projecto }: { projecto: Projecto }) {
                       <ul className="mt-5 flex flex-col gap-3">
                         {bloco.bullets.map((b, k) => (
                           <li key={k} className="flex gap-3 text-ink-2">
-                            <span className="mono-label mt-1.5 text-accent" aria-hidden>
+                            <span className="mono-label mt-1.5 text-ink-3" aria-hidden>
                               ·
                             </span>
                             <span>{t(b, idioma)}</span>

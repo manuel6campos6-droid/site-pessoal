@@ -9,7 +9,14 @@ import { Vazio } from "./Vazio";
 /** Coordenadas de países, acrescentadas à medida das viagens que existirem.
  *  Um país sem entrada aqui aparece na lista mas não no mapa: é melhor faltar
  *  um ponto do que pôr um ponto no sítio errado. */
-const COORDENADAS: Record<string, { lat: number; lon: number }> = {};
+const COORDENADAS: Record<string, { lat: number; lon: number }> = {
+  US: { lat: 39.8, lon: -98.6 },
+  RU: { lat: 61.5, lon: 105.3 },
+  MN: { lat: 46.9, lon: 103.8 },
+  CN: { lat: 35.9, lon: 104.2 },
+  OM: { lat: 21.5, lon: 55.9 },
+  LK: { lat: 7.9, lon: 80.8 },
+};
 
 /** Projecção equirectangular: simples e suficiente para pontos num mapa
  *  decorativo. Devolve percentagens, para o svg escalar sozinho. */
@@ -75,7 +82,10 @@ export function TravelMap({ viagens }: { viagens: Viagem[] }) {
         ))}
       </svg>
 
-      <ul className="flex flex-wrap gap-x-5 gap-y-2 border-t border-night-rule p-5">
+      <ul className="flex flex-wrap items-baseline gap-x-5 gap-y-2 border-t border-night-rule p-5">
+        <li className="mono-label mr-2 text-night-ink-2 opacity-60">
+          {idioma === "pt" ? "Alguns dos países" : "Some of the countries"}
+        </li>
         {viagens.map((v, i) => (
           <li
             key={i}

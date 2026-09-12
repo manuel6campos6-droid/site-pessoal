@@ -1,6 +1,6 @@
 "use client";
 
-import { fotosDeViagem, viagens } from "@/data/travel";
+import { fotosDeViagem, notaDeViagem, totalDePaises, viagens } from "@/data/travel";
 import { useIdioma } from "@/lib/idioma";
 import { t, temConteudo } from "@/lib/texto";
 import { Galeria } from "./Galeria";
@@ -17,20 +17,14 @@ export function SeccaoViagens() {
       <Revelar>
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <p className="prose-body max-w-lg text-night-ink-2">
-            {idioma === "pt"
-              ? "Países, viagens e o que ficou de cada uma."
-              : "Countries, trips, and what stayed with me from each."}
+            {t(notaDeViagem, idioma)}
           </p>
-          {viagens.length > 0 ? (
-            <div className="flex items-baseline gap-4">
-              <span className="display-lg">{viagens.length}</span>
-              <span className="mono-label pb-3 text-night-ink-2">
-                {idioma === "pt" ? "países" : "countries"}
-              </span>
-            </div>
-          ) : (
-            <span className="mono-label text-accent">[NUMBER OF COUNTRIES]</span>
-          )}
+          <div className="flex items-baseline gap-3">
+            <span className="display-md num-tabular">{totalDePaises}</span>
+            <span className="mono-label pb-1 text-night-ink-2">
+              {idioma === "pt" ? "países" : "countries"}
+            </span>
+          </div>
         </div>
       </Revelar>
 

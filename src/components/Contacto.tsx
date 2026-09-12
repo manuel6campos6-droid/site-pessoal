@@ -21,7 +21,7 @@ export function Contacto() {
             {perfil.email}
           </a>
         ) : (
-          <span className="mono-label text-accent">[EMAIL]</span>
+          <span className="marcador">[EMAIL]</span>
         )}
 
         {perfil.links.length > 0 ? (
@@ -41,8 +41,8 @@ export function Contacto() {
           </ul>
         ) : (
           <div className="mt-4 flex flex-wrap gap-x-8 gap-y-3">
-            <span className="mono-label text-accent">[LINKEDIN]</span>
-            <span className="mono-label text-accent">[OTHER LINKS]</span>
+            <span className="marcador">[LINKEDIN]</span>
+            <span className="marcador">[OTHER LINKS]</span>
           </div>
         )}
       </div>

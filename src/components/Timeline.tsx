@@ -35,7 +35,7 @@ export function Timeline() {
       />
       <motion.div
         aria-hidden
-        className="absolute top-0 left-0 hidden w-px origin-top bg-accent md:block"
+        className="absolute top-0 left-0 hidden w-px origin-top bg-night-ink-2/40 md:block"
         style={{
           height: "100%",
           scaleY: semMovimento ? 1 : progresso,
@@ -54,10 +54,20 @@ export function Timeline() {
                 <div className="group py-10 transition-opacity duration-500 md:py-14">
                   <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
                     <div className="max-w-2xl">
-                      <div className="mono-label flex items-center gap-3 text-night-ink-2">
+                      <div className="mono-label num-tabular flex flex-wrap items-center gap-x-3 gap-y-1 text-night-ink-2">
                         <span>{String(i + 1).padStart(2, "0")}</span>
-                        {p.period ? <span>{p.period}</span> : null}
-                        {p.status ? <span>{t(p.status, idioma)}</span> : null}
+                        {p.period ? (
+                          <>
+                            <span aria-hidden className="opacity-40">/</span>
+                            <span>{p.period}</span>
+                          </>
+                        ) : null}
+                        {p.status ? (
+                          <>
+                            <span aria-hidden className="opacity-40">/</span>
+                            <span>{t(p.status, idioma)}</span>
+                          </>
+                        ) : null}
                       </div>
                       <h3 className="display-md mt-3 transition-colors duration-500 group-hover:text-accent">
                         {p.name}
@@ -73,7 +83,7 @@ export function Timeline() {
                         </p>
                       ) : null}
                       {!temTexto ? (
-                        <p className="mono-label mt-4 text-accent">[ADD CONTENT]</p>
+                        <p className="marcador mt-4">[ADD CONTENT]</p>
                       ) : null}
                     </div>
 

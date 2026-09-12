@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Cursor } from "./Cursor";
 import { MenuDeComandos } from "./MenuDeComandos";
 import { Navegacao } from "./Navegacao";
 
@@ -12,7 +11,6 @@ export function Cromo() {
   return (
     <>
       <Navegacao onAbrirComandos={() => setComandos(true)} />
-      <Cursor />
       <MenuDeComandos aberto={comandos} setAberto={setComandos} />
     </>
   );

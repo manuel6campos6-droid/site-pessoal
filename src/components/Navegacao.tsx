@@ -58,7 +58,7 @@ export function Navegacao({ onAbrirComandos }: { onAbrirComandos: () => void }) 
         <div className="shell flex h-16 items-center justify-between gap-6 md:h-20">
           <a
             href="#top"
-            className="link-risca font-display text-lg tracking-tight md:text-xl"
+            className="link-risca font-display text-base tracking-tight"
           >
             {perfil.name}
           </a>

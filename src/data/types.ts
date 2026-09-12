@@ -65,9 +65,11 @@ export type Perfil = {
   portrait?: Imagem;
 };
 
-export type Educacao = {
-  institution: string;
-  degree?: Texto;
+/** Uma linha de percurso: educação, emprego ou actividade. São a mesma forma
+ *  e partilham o desenho, por isso partilham o tipo. */
+export type Percurso = {
+  organisation: string;
+  role?: Texto;
   period?: string;
   location?: Texto;
   notes?: Texto[];

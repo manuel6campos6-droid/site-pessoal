@@ -19,10 +19,10 @@ export function Revelar({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-12% 0px -12% 0px" }}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>

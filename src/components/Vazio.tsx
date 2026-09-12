@@ -31,7 +31,7 @@ export function Vazio({
           : "border-rule bg-paper-2/50 text-ink-3"
       }`}
     >
-      <span className="mono-label text-accent">{marcador}</span>
+      <span className="marcador">{marcador}</span>
       <p className="max-w-md text-sm leading-relaxed">{legenda}</p>
     </div>
   );

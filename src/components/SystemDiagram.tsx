@@ -30,7 +30,7 @@ export function SystemDiagram({
               escura ? "border-night-rule bg-night-2" : "border-rule bg-paper-2/60"
             }`}
           >
-            <span className="mono-label text-accent">
+            <span className="marcador">
               {String(i + 1).padStart(2, "0")}
             </span>
             <p className="mt-2 font-medium">{t(passo.label, idioma)}</p>

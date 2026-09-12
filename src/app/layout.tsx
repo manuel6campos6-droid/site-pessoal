@@ -20,7 +20,7 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: `${perfil.name} — [ADD CONTENT]`,
+  title: perfil.name,
   description: "[ADD CONTENT]",
   // O endereço final ainda não existe; quando existir, entra aqui e o Open
   // Graph passa a resolver as imagens sozinho.
