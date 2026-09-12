@@ -27,7 +27,7 @@ export function ProjectDetail({ projecto }: { projecto: Projecto }) {
         </Link>
 
         <header className="mt-10">
-          <h1 className="display-xl">{projecto.name}</h1>
+          <h1 className="display-lg">{projecto.name}</h1>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             {projecto.period ? <Etiqueta>{projecto.period}</Etiqueta> : null}
             {projecto.status ? <Etiqueta>{t(projecto.status, idioma)}</Etiqueta> : null}
@@ -57,7 +57,7 @@ export function ProjectDetail({ projecto }: { projecto: Projecto }) {
           )}
         </header>
 
-        <div className="mt-14 md:mt-20">
+        <div className="mt-10 md:mt-14">
           <Figura
             imagem={projecto.cover ?? projecto.images?.[0]}
             ratio="16/9"

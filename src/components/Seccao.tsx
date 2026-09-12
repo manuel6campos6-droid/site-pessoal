@@ -64,7 +64,7 @@ export function Seccao({
             {titulo}
           </motion.h2>
         </header>
-        <div className="mt-14 md:mt-20">{children}</div>
+        <div className="mt-10 md:mt-12">{children}</div>
       </div>
     </section>
   );

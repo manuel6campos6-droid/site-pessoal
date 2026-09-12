@@ -10,9 +10,9 @@ export function Contacto() {
 
   return (
     <div>
-      <p className="display-xl">{idioma === "pt" ? "Vamos falar." : "Let's talk."}</p>
+      <p className="display-lg">{idioma === "pt" ? "Vamos falar." : "Let's talk."}</p>
 
-      <div className="mt-14 flex flex-col gap-4 md:mt-20">
+      <div className="mt-10 flex flex-col gap-4 md:mt-12">
         {perfil.email ? (
           <a
             href={`mailto:${perfil.email}`}
