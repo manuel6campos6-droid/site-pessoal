@@ -1,26 +1,167 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Design system. Nenhum componente escreve cores à mão: tudo sai destes tokens.
+   Mudar o acento aqui muda o site inteiro. */
+@theme {
+  /* Fundo quente, texto quase preto, cinzentos para o secundário. */
+  --color-paper: #faf8f5;
+  --color-paper-2: #f2eee8;
+  --color-ink: #12100e;
+  --color-ink-2: #4a463f;
+  --color-ink-3: #8c877d;
+  --color-rule: #e2dcd2;
+
+  /* Secções escuras, para contraste pontual. */
+  --color-night: #12100e;
+  --color-night-2: #1c1a17;
+  --color-night-ink: #f5f2ec;
+  --color-night-ink-2: #a39d92;
+  --color-night-rule: #2e2b26;
+
+  /* Um único acento. */
+  --color-accent: #c2410c;
+  --color-accent-soft: #f0d9cc;
+
+  --font-display: var(--font-display), Georgia, serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Ritmo vertical das secções. */
+  --spacing-section: 9rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    /* O fundo acompanha a secção em leitura, senão aparece uma faixa clara
+       entre a barra e uma secção escura. */
+    background-color: var(--color-paper);
+    transition: background-color 0.3s ease;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  /* O site é claro por desenho editorial; as secções escuras são escolhidas
+     à mão. Não seguimos o tema do sistema para não desfazer esse contraste. */
+  ::selection {
+    background-color: var(--color-accent-soft);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+  /* Quem pede menos movimento recebe o site sem animação nenhuma. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Grão de papel: um ruído muito ténue por cima de tudo, que tira ao fundo o
+     aspecto de branco digital chapado. Não intercepta o rato. */
+  .grao::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Sublinhado que cresce do lado esquerdo ao passar o rato. Usa transform,
+     não width, para animar sem obrigar o browser a refazer o layout. */
+  .link-risca {
+    position: relative;
+  }
+  .link-risca::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -2px;
+    height: 1px;
+    background-color: currentcolor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-risca:hover::after,
+  .link-risca:focus-visible::after {
+    transform: scaleX(1);
+  }
+}
+
+@layer utilities {
+  /* Largura editorial única, com goteira mínima em todos os ecrãs. */
+  .shell {
+    width: 100%;
+    max-width: 88rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .shell {
+      padding-inline: 2.5rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .shell {
+      padding-inline: 4rem;
+    }
+  }
+  /* Títulos grandes: o display encolhe com o ecrã sem partir a composição. */
+  .display-xl {
+    font-family: var(--font-display);
+    font-weight: 500;
+    /* O display em tamanhos grandes fecha o espaço entre letras; o kerning e as
+       ligaturas fazem a diferença entre composição e texto esticado. */
+    font-feature-settings: "kern" 1, "liga" 1;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    font-size: clamp(2.75rem, 11vw, 9rem);
+  }
+  .display-lg {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    font-size: clamp(2.25rem, 7vw, 5rem);
+  }
+  .display-md {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+  }
+  /* Etiqueta técnica: números de secção, categorias, metadados. */
+  .num-tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .mono-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .prose-body {
+    font-size: clamp(1.0625rem, 1.1vw, 1.1875rem);
+    line-height: 1.65;
+    color: var(--color-ink-2);
+  }
+  .hairline {
+    border-top: 1px solid var(--color-rule);
+  }
 }
