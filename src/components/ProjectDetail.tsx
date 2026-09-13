@@ -9,7 +9,6 @@ import { Figura } from "./Figura";
 import { Galeria } from "./Galeria";
 import { Metricas } from "./Metricas";
 import { Revelar } from "./Revelar";
-import { SiteEmbebido } from "./SiteEmbebido";
 import { Vazio } from "./Vazio";
 
 /** Página de um projecto. Cada bloco só aparece se tiver conteúdo: a numeração
@@ -58,29 +57,21 @@ export function ProjectDetail({ projecto }: { projecto: Projecto }) {
           )}
         </header>
 
-        {/* Um projecto com site emoldurável mostra-o a funcionar; os outros
-            mostram o visual grande. */}
+        {/* Capturas de telemóvel são verticais: numa moldura 16/9 ficava só
+            uma faixa do meio. A de topo mantém a proporção e limita-se em
+            largura, em vez de ser cortada. */}
         <div className="mt-10 md:mt-14">
-          {projecto.embed ? (
-            <div className="mx-auto w-full max-w-md">
-              <SiteEmbebido
-                src={projecto.embed.src}
-                href={projecto.link?.href ?? projecto.embed.src}
-                label={projecto.embed.label}
-                altura={projecto.embed.shape ?? "landscape"}
-                titulo={{
-                  en: `${projecto.name}, running live`,
-                  pt: `${projecto.name}, a funcionar`,
-                }}
+          {projecto.cover?.src || projecto.images?.[0] ? (
+            <div className="mx-auto w-full max-w-xs">
+              <Figura
+                imagem={projecto.cover ?? projecto.images?.[0]}
+                ratio="1320/2868"
+                marcador="[LARGE VISUAL]"
+                prioridade
               />
             </div>
           ) : (
-            <Figura
-              imagem={projecto.cover ?? projecto.images?.[0]}
-              ratio="16/9"
-              marcador="[LARGE VISUAL]"
-              prioridade
-            />
+            <Figura ratio="16/9" marcador="[LARGE VISUAL]" prioridade />
           )}
         </div>
 
@@ -141,7 +132,7 @@ export function ProjectDetail({ projecto }: { projecto: Projecto }) {
           <h2 className="display-md mb-8">
             {idioma === "pt" ? "Galeria" : "Gallery"}
           </h2>
-          <Galeria imagens={projecto.gallery ?? projecto.images} />
+          <Galeria imagens={projecto.gallery ?? projecto.images} ratio="1320/2868" />
         </div>
       </div>
     </article>

@@ -100,14 +100,81 @@ export const projectos: Projecto[] = [
     slug: "noite",
     name: "Noite",
     link: { label: { en: "noiteapp.com", pt: "noiteapp.com" }, href: "https://noiteapp.com" },
-    // A demo é a única rota do noiteapp.com que se deixa emoldurar, e só por
-    // sites autorizados em `NOITE_DEMO_ANCESTORS`. Enquanto este site não
-    // estiver nessa lista, a moldura fica vazia.
-    embed: {
-      src: "https://noiteapp.com/demo",
-      label: "noiteapp.com",
-      shape: "portrait",
+    cover: {
+      src: "/noite/1-01.jpg",
+      alt: {
+        en: "The NOITE app showing tonight's parties in Lisbon",
+        pt: "A app NOITE a mostrar as festas desta noite em Lisboa",
+      },
     },
+    gallery: [
+      {
+        src: "/noite/1-01.jpg",
+        alt: {
+          en: "Tonight's parties in Lisbon, with the ones already running",
+          pt: "As festas desta noite em Lisboa, com as que já estão a decorrer",
+        },
+        caption: {
+          en: "Discover what is happening tonight.",
+          pt: "Descobre o que está a acontecer esta noite.",
+        },
+      },
+      {
+        src: "/noite/2-02.jpg",
+        alt: {
+          en: "A party page with poster, time, venue and who is going",
+          pt: "A página de uma festa com cartaz, hora, local e quem vai",
+        },
+        caption: {
+          en: "Poster, time, venue and who is going.",
+          pt: "Cartaz, horário, local e quem vai.",
+        },
+      },
+      {
+        src: "/noite/4-03.jpg",
+        alt: {
+          en: "Map of Lisbon with the nights happening nearby",
+          pt: "Mapa de Lisboa com as noites a acontecer por perto",
+        },
+        caption: {
+          en: "Find nights on the map.",
+          pt: "Encontra noites no mapa.",
+        },
+      },
+      {
+        src: "/noite/5-04.jpg",
+        alt: {
+          en: "Shortcuts by tonight, this weekend, friends and university",
+          pt: "Atalhos por esta noite, fim de semana, amigos e universidade",
+        },
+        caption: {
+          en: "See where everyone is going.",
+          pt: "Vê onde a malta vai.",
+        },
+      },
+      {
+        src: "/noite/3-07.jpg",
+        alt: {
+          en: "A party page showing how many people are going",
+          pt: "A página de uma festa a mostrar quantas pessoas vão",
+        },
+        caption: {
+          en: "See who is going before you show up.",
+          pt: "Vê quem vai antes de apareceres.",
+        },
+      },
+      {
+        src: "/noite/6-06.jpg",
+        alt: {
+          en: "A user profile with friends and upcoming nights",
+          pt: "Um perfil com amigos e as próximas noites",
+        },
+        caption: {
+          en: "Profile, friends and upcoming nights.",
+          pt: "Perfil, amigos e próximas noites.",
+        },
+      },
+    ],
     // O que a Noite é e o que ele lá fez fica por escrever: o CV não a
     // menciona.
   },

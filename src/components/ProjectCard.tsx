@@ -12,8 +12,16 @@ export function ProjectCard({ projecto }: { projecto: Projecto }) {
 
   return (
     <Link href={`/projects/${projecto.slug}`} className="group block">
-      <div className="overflow-hidden rounded-lg">
-        <Figura imagem={capa} ratio="4/3" marcador="[COVER]" />
+      {/* Capturas de telemóvel são verticais e não cabem num molde 4/3: a
+          imagem limita-se em largura para não passar de um ecrã de altura.
+          Sem capa, a caixa encolhe a uma faixa em vez de ocupar a página
+          toda à volta de um marcador. */}
+      <div className={`overflow-hidden rounded-lg ${capa ? "max-w-56" : ""}`}>
+        <Figura
+          imagem={capa}
+          ratio={capa ? "1320/2868" : "5/2"}
+          marcador="[COVER]"
+        />
       </div>
       <div className="mt-5 flex items-baseline justify-between gap-4">
         <h3 className="display-md transition-colors duration-500 group-hover:text-accent">
