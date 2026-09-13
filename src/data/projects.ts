@@ -99,8 +99,17 @@ export const projectos: Projecto[] = [
   {
     slug: "noite",
     name: "Noite",
-    // O CV não fala da Noite: o que aqui aparece é só o nome, até ele
-    // escrever o resto.
+    link: { label: { en: "noiteapp.com", pt: "noiteapp.com" }, href: "https://noiteapp.com" },
+    // A demo é a única rota do noiteapp.com que se deixa emoldurar, e só por
+    // sites autorizados em `NOITE_DEMO_ANCESTORS`. Enquanto este site não
+    // estiver nessa lista, a moldura fica vazia.
+    embed: {
+      src: "https://noiteapp.com/demo",
+      label: "noiteapp.com",
+      shape: "portrait",
+    },
+    // O que a Noite é e o que ele lá fez fica por escrever: o CV não a
+    // menciona.
   },
 ];
 

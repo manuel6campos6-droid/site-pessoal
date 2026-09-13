@@ -30,6 +30,9 @@ export function ProjectCard({ projecto }: { projecto: Projecto }) {
       ) : (
         <p className="marcador mt-2">[ADD CONTENT]</p>
       )}
+      {projecto.link ? (
+        <p className="mono-label mt-2 text-ink-3">{projecto.link.href.replace(/^https?:\/\//, "")}</p>
+      ) : null}
     </Link>
   );
 }

@@ -99,6 +99,18 @@ export type Projecto = Etapa & {
   role?: Texto;
   /** Galeria no fim da página. */
   gallery?: Imagem[];
+  /** Um site que se pode mostrar a funcionar dentro da página. O site tem de
+   *  autorizar quem o emoldura, senão o browser recusa e a moldura fica vazia:
+   *  ver `SiteEmbebido`. */
+  embed?: {
+    /** O endereço a carregar na moldura. Costuma ser uma rota de demonstração,
+     *  não a página de entrada. */
+    src: string;
+    /** O que a barra de endereço mostra. */
+    label: string;
+    /** `portrait` para uma app de telemóvel, `landscape` para um site. */
+    shape?: "portrait" | "landscape";
+  };
 };
 
 /* ---------- Finanças ---------- */

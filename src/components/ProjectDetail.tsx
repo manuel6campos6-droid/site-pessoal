@@ -9,6 +9,7 @@ import { Figura } from "./Figura";
 import { Galeria } from "./Galeria";
 import { Metricas } from "./Metricas";
 import { Revelar } from "./Revelar";
+import { SiteEmbebido } from "./SiteEmbebido";
 import { Vazio } from "./Vazio";
 
 /** Página de um projecto. Cada bloco só aparece se tiver conteúdo: a numeração
@@ -57,13 +58,30 @@ export function ProjectDetail({ projecto }: { projecto: Projecto }) {
           )}
         </header>
 
+        {/* Um projecto com site emoldurável mostra-o a funcionar; os outros
+            mostram o visual grande. */}
         <div className="mt-10 md:mt-14">
-          <Figura
-            imagem={projecto.cover ?? projecto.images?.[0]}
-            ratio="16/9"
-            marcador="[LARGE VISUAL]"
-            prioridade
-          />
+          {projecto.embed ? (
+            <div className="mx-auto w-full max-w-sm">
+              <SiteEmbebido
+                src={projecto.embed.src}
+                href={projecto.link?.href ?? projecto.embed.src}
+                label={projecto.embed.label}
+                altura={projecto.embed.shape ?? "landscape"}
+                titulo={{
+                  en: `${projecto.name}, running live`,
+                  pt: `${projecto.name}, a funcionar`,
+                }}
+              />
+            </div>
+          ) : (
+            <Figura
+              imagem={projecto.cover ?? projecto.images?.[0]}
+              ratio="16/9"
+              marcador="[LARGE VISUAL]"
+              prioridade
+            />
+          )}
         </div>
 
         {projecto.metrics && projecto.metrics.length > 0 ? (
