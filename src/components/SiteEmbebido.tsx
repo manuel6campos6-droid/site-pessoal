@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useIdioma } from "@/lib/idioma";
 import { t } from "@/lib/texto";
 import type { Texto } from "@/data/types";
@@ -31,12 +31,29 @@ export function SiteEmbebido({
   altura?: "portrait" | "landscape";
 }) {
   const { idioma } = useIdioma();
-  // A moldura só carrega depois de um clique: um site inteiro dentro de outro
-  // é peso a mais para quem só está a passar os olhos.
+  const caixa = useRef<HTMLDivElement>(null);
   const [aCarregar, setACarregar] = useState(false);
 
+  // Só quando a moldura chega ao ecrã: um site inteiro dentro de outro é peso
+  // a mais para quem nunca chega a rolar até aqui.
+  useEffect(() => {
+    const no = caixa.current;
+    if (!no) return;
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        if (entradas.some((e) => e.isIntersecting)) {
+          setACarregar(true);
+          observador.disconnect();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+    observador.observe(no);
+    return () => observador.disconnect();
+  }, []);
+
   return (
-    <div className="overflow-hidden rounded-xl border border-rule bg-paper-2">
+    <div ref={caixa} className="overflow-hidden rounded-xl border border-rule bg-paper-2">
       <div className="flex items-center gap-3 border-b border-rule px-4 py-2.5">
         <span className="flex shrink-0 gap-1.5" aria-hidden>
           {[0, 1, 2].map((i) => (
@@ -55,8 +72,11 @@ export function SiteEmbebido({
       </div>
 
       <div
-        className="relative w-full bg-paper"
-        style={{ aspectRatio: altura === "portrait" ? "10/16" : "16/10" }}
+        className={`relative w-full bg-paper ${
+          altura === "portrait"
+            ? "h-[70svh] max-h-[620px] min-h-[440px]"
+            : "aspect-16/10"
+        }`}
       >
         {aCarregar ? (
           <iframe
@@ -69,18 +89,11 @@ export function SiteEmbebido({
             className="absolute inset-0 size-full border-0"
           />
         ) : (
-          <button
-            type="button"
-            onClick={() => setACarregar(true)}
-            className="group absolute inset-0 flex flex-col items-center justify-center gap-3 transition-colors hover:bg-paper-2/60"
-          >
-            <span className="flex size-14 items-center justify-center rounded-full border border-rule text-lg text-ink-2 transition-colors group-hover:border-accent group-hover:text-accent">
-              ▸
-            </span>
+          <div className="absolute inset-0 flex items-center justify-center">
             <span className="mono-label text-ink-3">
-              {idioma === "pt" ? "Carregar a app" : "Load the app"}
+              {idioma === "pt" ? "A carregar…" : "Loading…"}
             </span>
-          </button>
+          </div>
         )}
       </div>
     </div>

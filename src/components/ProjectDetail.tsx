@@ -62,7 +62,7 @@ export function ProjectDetail({ projecto }: { projecto: Projecto }) {
             mostram o visual grande. */}
         <div className="mt-10 md:mt-14">
           {projecto.embed ? (
-            <div className="mx-auto w-full max-w-sm">
+            <div className="mx-auto w-full max-w-md">
               <SiteEmbebido
                 src={projecto.embed.src}
                 href={projecto.link?.href ?? projecto.embed.src}
