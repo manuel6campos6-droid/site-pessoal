@@ -1,9 +1,9 @@
-# O site é Next.js, não HTML estático: o plugin trata do que o Next precisa no
-# servidor (imagens optimizadas, rotas). Sem ele, o deploy sobe a pasta crua e
-# as páginas não abrem.
+# O site é exportado como HTML estático (`output: "export"` no next.config.ts),
+# por isso o Netlify publica a pasta `out/`. Sem `PAGES_BASE_PATH` o site sai
+# na raiz do domínio; o prefixo /site-pessoal é só do GitHub Pages.
 [build]
   command = "npm run build"
-  publish = ".next"
+  publish = "out"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+[build.environment]
+  NODE_VERSION = "22"
