@@ -24,24 +24,6 @@ export const experiencia: Percurso[] = [
 /** Actividades extracurriculares e voluntariado. */
 export const actividades: Percurso[] = [
   {
-    organisation: "Bank Experience Club",
-    role: { en: "Head of Corporate Banking", pt: "Head of Corporate Banking" },
-    period: "[PERIOD]",
-    location: { en: "Católica University", pt: "Universidade Católica" },
-    notes: [
-      {
-        en: "Managed a small team.",
-        pt: "Geri uma equipa pequena.",
-      },
-    ],
-  },
-  {
-    organisation: "Investments Club",
-    role: { en: "Member", pt: "Membro" },
-    period: "[PERIOD]",
-    location: { en: "Católica University", pt: "Universidade Católica" },
-  },
-  {
     organisation: "Web Summit",
     role: { en: "Volunteer", pt: "Voluntário" },
     period: "2024",
@@ -53,7 +35,7 @@ export const competencias = {
   finance: ["DCF models"],
   tools: ["MS Office Suite", "Canva", "AI tools"],
   languages: [
-    { label: { en: "Portuguese", pt: "Português" }, level: { en: "Native", pt: "Nativo" } },
+    { label: { en: "Portuguese", pt: "Português" }, level: { en: "Native", pt: "Língua materna" } },
     { label: { en: "English", pt: "Inglês" }, level: { en: "Advanced", pt: "Avançado" } },
     { label: { en: "Spanish", pt: "Espanhol" }, level: { en: "Intermediate", pt: "Intermédio" } },
   ],

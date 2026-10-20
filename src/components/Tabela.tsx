@@ -11,7 +11,7 @@ export function Tabela({ tabela }: { tabela: Dados }) {
   if (tabela.rows.length === 0) return null;
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-rule">
+    <div className="overflow-x-auto rounded-[var(--radius-cartao)] border border-rule">
       <table className="w-full border-collapse text-sm">
         {tabela.caption ? (
           <caption className="px-4 py-3 text-left text-ink-3">

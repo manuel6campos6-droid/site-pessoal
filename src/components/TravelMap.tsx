@@ -51,7 +51,7 @@ export function TravelMap({ viagens }: { viagens: Viagem[] }) {
     .filter((p): p is NonNullable<typeof p> => p !== null);
 
   return (
-    <div className="relative w-full overflow-hidden rounded-lg border border-night-rule bg-night-2">
+    <div className="relative w-full overflow-hidden rounded-[var(--radius-cartao)] border border-night-rule bg-night-2">
       <svg
         viewBox="0 0 100 50"
         className="h-auto w-full"

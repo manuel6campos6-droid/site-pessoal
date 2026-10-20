@@ -4,6 +4,7 @@ import type { ProjectoTecnico } from "@/data/types";
 import { useIdioma } from "@/lib/idioma";
 import { t, temConteudo } from "@/lib/texto";
 import { Etiqueta } from "./Etiqueta";
+import { Galeria } from "./Galeria";
 import { Metricas } from "./Metricas";
 import { ProductDemo } from "./ProductDemo";
 import { SystemDiagram } from "./SystemDiagram";
@@ -64,10 +65,12 @@ export function TechProject({
                   href={l.href}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="mono-label border-b pb-0.5 transition-colors hover:border-accent hover:text-accent"
-                  style={{ borderColor: "currentcolor" }}
+                  className="ligacao-azul text-sm"
                 >
-                  {t(l.label, idioma)} ↗
+                  {t(l.label, idioma)}
+                  <span aria-hidden className="seta">
+                    ↗
+                  </span>
                 </a>
               ) : null,
             )}
@@ -84,12 +87,23 @@ export function TechProject({
       <div className={invertido ? "md:order-1" : ""}>
         <ProductDemo
           imagem={projecto.screenshots?.[0]}
-          url={projecto.link?.href}
+          url={projecto.link?.href.replace(/^https?:\/\//, "").replace(/\/$/, "")}
           escura={escura}
         />
         {projecto.flow && projecto.flow.length > 0 ? (
           <div className="mt-6">
             <SystemDiagram passos={projecto.flow} escura={escura} />
+          </div>
+        ) : null}
+        {/* A janela mostra so a primeira captura. As restantes ficam numa
+            grelha por baixo, em pequeno, e abrem em grande ao clique. */}
+        {projecto.screenshots && projecto.screenshots.length > 1 ? (
+          <div className="mt-4">
+            <Galeria
+              imagens={projecto.screenshots.slice(1)}
+              ratio="1320/2868"
+              escura={escura}
+            />
           </div>
         ) : null}
       </div>

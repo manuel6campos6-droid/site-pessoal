@@ -2,6 +2,7 @@ import { Contacto } from "@/components/Contacto";
 import { Cromo } from "@/components/Cromo";
 import { GrelhaDeProjectos } from "@/components/GrelhaDeProjectos";
 import { Hero } from "@/components/Hero";
+import { Recomendacoes } from "@/components/Recomendacoes";
 import { Rodape } from "@/components/Rodape";
 import { Transicao } from "@/components/Transicao";
 import { SeccaoFinancas } from "@/components/SeccaoFinancas";
@@ -13,8 +14,8 @@ import { SobreEEducacao } from "@/components/SobreEEducacao";
 import { Timeline } from "@/components/Timeline";
 import { seccoes } from "@/data/sections";
 
-// A ordem da narrativa: sobre → percurso → projectos → finanças → tecnologia →
-// viagens → pessoal → contacto. As secções escuras marcam as mudanças de tom.
+// A ordem da narrativa: sobre → recomendações → percurso → projectos → finanças →
+// tecnologia → viagens → pessoal → contacto. As secções escuras marcam as mudanças de tom.
 const s = (id: string) => seccoes.find((x) => x.id === id)!;
 
 export default function Home() {
@@ -27,6 +28,10 @@ export default function Home() {
 
         <Seccao dados={s("about")}>
           <SobreEEducacao />
+        </Seccao>
+
+        <Seccao dados={s("recommendations")}>
+          <Recomendacoes />
         </Seccao>
 
         <Seccao dados={s("journey")}>

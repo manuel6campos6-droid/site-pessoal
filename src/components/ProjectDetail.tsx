@@ -7,6 +7,7 @@ import { t, temConteudo } from "@/lib/texto";
 import { Etiqueta } from "./Etiqueta";
 import { Figura } from "./Figura";
 import { Galeria } from "./Galeria";
+import { Trabalhos } from "./Trabalhos";
 import { Metricas } from "./Metricas";
 import { Revelar } from "./Revelar";
 import { Vazio } from "./Vazio";
@@ -31,16 +32,22 @@ export function ProjectDetail({ projecto }: { projecto: Projecto }) {
           <div className="mt-6 flex flex-wrap items-center gap-3">
             {projecto.period ? <Etiqueta>{projecto.period}</Etiqueta> : null}
             {projecto.status ? <Etiqueta>{t(projecto.status, idioma)}</Etiqueta> : null}
-            {projecto.link ? (
+            {/* Um projecto pode ter varias moradas: site, redes, um trabalho
+                concreto. Sem `links`, mostra-se so o `link` de sempre. */}
+            {(projecto.links ?? (projecto.link ? [projecto.link] : [])).map((l) => (
               <a
-                href={projecto.link.href}
+                key={l.href}
+                href={l.href}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="mono-label border-b border-ink-3 pb-0.5 hover:border-accent hover:text-accent"
+                className="ligacao-azul text-sm"
               >
-                {t(projecto.link.label, idioma)} ↗
+                {t(l.label, idioma)}
+                <span aria-hidden className="seta">
+                  ↗
+                </span>
               </a>
-            ) : null}
+            ))}
           </div>
           {temConteudo(projecto.tagline) ? (
             <p className="prose-body mt-8 max-w-2xl">{t(projecto.tagline, idioma)}</p>
@@ -61,11 +68,19 @@ export function ProjectDetail({ projecto }: { projecto: Projecto }) {
             uma faixa do meio. A de topo mantém a proporção e limita-se em
             largura, em vez de ser cortada. */}
         <div className="mt-10 md:mt-14">
-          {projecto.cover?.src || projecto.images?.[0] ? (
-            <div className="mx-auto w-full max-w-xs">
+          {projecto.abertura?.src || projecto.cover?.src || projecto.images?.[0] ? (
+            // A abertura, quando existe, e ao largo e ocupa a pagina toda. Sem
+            // ela, entra a capa do cartao, que e ao alto e por isso se limita
+            // em largura: a toda a largura empurrava a pagina para baixo.
+            <div
+              className={`w-full ${projecto.abertura ? "" : "mx-auto max-w-xs"}`}
+            >
               <Figura
-                imagem={projecto.cover ?? projecto.images?.[0]}
-                ratio="1320/2868"
+                imagem={
+                  projecto.abertura ?? projecto.cover ?? projecto.images?.[0]
+                }
+                ratio={projecto.abertura ? "1128/191" : "1320/2868"}
+                inteira={Boolean(projecto.abertura)}
                 marcador="[LARGE VISUAL]"
                 prioridade
               />
@@ -128,11 +143,36 @@ export function ProjectDetail({ projecto }: { projecto: Projecto }) {
           )}
         </div>
 
+        {/* Um projecto com clientes mostra-os um a um; os outros continuam a
+            mostrar a galeria de sempre. */}
         <div className="mt-20 md:mt-28">
           <h2 className="display-md mb-8">
-            {idioma === "pt" ? "Galeria" : "Gallery"}
+            {projecto.trabalhos && projecto.trabalhos.length > 0
+              ? idioma === "pt"
+                ? "Trabalhos"
+                : "Selected work"
+              : idioma === "pt"
+                ? "Galeria"
+                : "Gallery"}
           </h2>
-          <Galeria imagens={projecto.gallery ?? projecto.images} ratio="1320/2868" />
+          {/* A identidade abre a seccao: e o que atravessa todos os trabalhos,
+              e nao mais um trabalho ao lado dos outros. */}
+          {projecto.marca && projecto.marca.length > 0 ? (
+            <div className="mb-16 md:mb-24">
+              <h3 className="display-md mb-6">
+                {idioma === "pt" ? "A marca" : "The brand"}
+              </h3>
+              {/* Esbocos ao alto, ecras ao largo: com uma forma fixa uns
+                  ficavam minusculos ao lado dos outros. O quadrado da a todos
+                  a mesma area e a imagem cabe inteira dentro dele. */}
+              <Galeria imagens={projecto.marca} ratio="1/1" inteira />
+            </div>
+          ) : null}
+          {projecto.trabalhos && projecto.trabalhos.length > 0 ? (
+            <Trabalhos trabalhos={projecto.trabalhos} />
+          ) : (
+            <Galeria imagens={projecto.gallery ?? projecto.images} ratio="1320/2868" />
+          )}
         </div>
       </div>
     </article>

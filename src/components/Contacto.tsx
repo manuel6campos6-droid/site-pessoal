@@ -14,10 +14,7 @@ export function Contacto() {
 
       <div className="mt-10 flex flex-col gap-4 md:mt-12">
         {perfil.email ? (
-          <a
-            href={`mailto:${perfil.email}`}
-            className="display-md w-fit border-b border-night-rule pb-1 transition-colors duration-500 hover:border-accent hover:text-accent"
-          >
+          <a href={`mailto:${perfil.email}`} className="botao w-fit">
             {perfil.email}
           </a>
         ) : (
@@ -32,9 +29,12 @@ export function Contacto() {
                   href={l.href}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="mono-label border-b border-night-rule pb-1 transition-colors duration-500 hover:border-accent hover:text-accent"
+                  className="botao botao-vazio"
                 >
-                  {t(l.label, idioma)} ↗
+                  {t(l.label, idioma)}
+                  <span aria-hidden className="seta">
+                    ↗
+                  </span>
                 </a>
               </li>
             ))}

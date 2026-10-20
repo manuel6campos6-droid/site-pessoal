@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { Imagem } from "@/data/types";
+import { comBase } from "@/lib/caminho";
 import { useIdioma } from "@/lib/idioma";
 import { t } from "@/lib/texto";
 
@@ -13,31 +14,37 @@ export function Figura({
   marcador = "[IMAGE]",
   escura = false,
   prioridade = false,
+  inteira = false,
 }: {
   imagem?: Imagem;
   ratio?: string;
   marcador?: string;
   escura?: boolean;
   prioridade?: boolean;
+  /** A imagem cabe toda dentro da caixa em vez de a encher. Uma fotografia
+   *  ganha em ser cortada; um documento, que se tem de ler, nao. */
+  inteira?: boolean;
 }) {
   const { idioma } = useIdioma();
 
   return (
     <figure className="w-full max-w-full">
       <div
-        className={`relative w-full max-w-full overflow-hidden rounded-lg ${
+        className={`relative w-full max-w-full overflow-hidden rounded-[var(--radius-cartao)] ${
           escura ? "bg-night-2" : "bg-paper-2"
         } ${imagem ? "" : "border border-dashed " + (escura ? "border-night-rule" : "border-rule")}`}
         style={{ aspectRatio: ratio }}
       >
         {imagem ? (
           <Image
-            src={imagem.src}
+            src={comBase(imagem.src)}
             alt={t(imagem.alt, idioma)}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             priority={prioridade}
-            className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+            className={`transition-transform duration-700 hover:scale-[1.03] ${
+              inteira ? "object-contain" : "object-cover"
+            }`}
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">

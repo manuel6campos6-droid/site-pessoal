@@ -50,17 +50,17 @@ export function Navegacao({ onAbrirComandos }: { onAbrirComandos: () => void }) 
         } ${
           rolado
             ? sobreEscuro
-              ? "bg-night"
-              : "bg-paper/85 backdrop-blur-md"
+              ? "bg-night/80 backdrop-blur-xl backdrop-saturate-150"
+              : "bg-paper/80 backdrop-blur-xl backdrop-saturate-150"
             : "bg-transparent"
         }`}
       >
-        <div className="shell flex h-16 items-center justify-between gap-6 md:h-20">
+        <div className="shell flex h-12 items-center justify-between gap-6 md:h-14">
           <a
             href="#top"
-            className="link-risca font-display text-base tracking-tight"
+            className="link-risca text-sm font-semibold tracking-tight"
           >
-            {perfil.name}
+            {perfil.shortName ?? perfil.name}
           </a>
 
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Sections">
@@ -69,7 +69,7 @@ export function Navegacao({ onAbrirComandos }: { onAbrirComandos: () => void }) 
                 key={s.id}
                 href={`#${s.id}`}
                 aria-current={activa === s.id ? "true" : undefined}
-                className={`mono-label link-risca transition-colors ${
+                className={`link-risca text-sm transition-colors ${
                   activa === s.id
                     ? "opacity-100"
                     : sobreEscuro
@@ -133,7 +133,7 @@ export function Navegacao({ onAbrirComandos }: { onAbrirComandos: () => void }) 
             transition={{ duration: 0.2 }}
           >
             <div className="shell flex h-16 items-center justify-between">
-              <span className="font-display text-lg">{perfil.name}</span>
+              <span className="font-display text-lg">{perfil.shortName ?? perfil.name}</span>
               <button
                 type="button"
                 onClick={() => setAberto(false)}

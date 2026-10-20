@@ -7,8 +7,8 @@ export function TechStack({ stack, escura = false }: { stack?: string[]; escura?
       {stack.map((item) => (
         <li
           key={item}
-          className={`mono-label rounded border px-2.5 py-1 ${
-            escura ? "border-night-rule text-night-ink-2" : "border-rule text-ink-2"
+          className={`dado rounded-full px-3 py-1.5 ${
+            escura ? "bg-night-2 text-night-ink-2" : "bg-paper-2 text-ink-2"
           }`}
         >
           {item}

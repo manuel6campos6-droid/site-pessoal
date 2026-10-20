@@ -47,11 +47,17 @@ monoespaçada cor de acento.
 
 Tudo sai dos tokens de `src/app/globals.css` (`@theme`): fundo `paper`, texto
 `ink`, secções escuras `night`, um único acento. Escrever um hexadecimal num
-componente desfaz o sistema. Tipografia: Fraunces nos títulos, Inter no corpo.
+componente desfaz o sistema. Tipografia: a San Francisco da Apple, pedida ao
+sistema operativo em `--font-display` e `--font-sans` (nao se pode servir como
+fonte web), com uma cadeia de recurso para Windows e Android; IBM Plex Mono nas
+etiquetas, essa sim servida do site.
 
 As secções escuras estão marcadas com `escura: true` em `data/sections.ts`, e é
 daí que a barra de navegação sabe que tem de inverter as cores. Marcar uma
 secção como escura em dois sítios diferentes é como se perde o alinhamento.
+`cinzenta: true` dá o cinzento claro, para separar duas secções claras seguidas:
+a branco puro, uma corria para a outra sem se perceber onde acaba. Um `.cartao`
+numa secção cinzenta inverte-se para branco sozinho, senão desaparecia no fundo.
 
 ## Movimento
 

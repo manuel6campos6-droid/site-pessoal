@@ -52,6 +52,10 @@ export type Bloco = {
 
 export type Perfil = {
   name: string;
+  /** Nome curto, só para a abertura da homepage. O nome completo continua a
+   *  identificar a página no separador, na barra e no rodapé: é ali que serve
+   *  para alguém saber de quem é o site. */
+  shortName?: string;
   /** Uma linha de posicionamento, no topo da homepage. */
   positioning: Texto;
   /** Uma frase de introdução. Curta. */
@@ -88,17 +92,38 @@ export type Etapa = {
   metrics?: Metrica[];
   images?: Imagem[];
   link?: Link;
+  /** Ligações extra, quando uma só não chega: site, redes, um trabalho
+   *  concreto. A primeira continua a ser o `link`, que é o que o cartão usa. */
+  links?: Link[];
   details?: Bloco[];
   /** Etiqueta curta do estado: activo, encerrado, em construção. */
   status?: Texto;
 };
 
 export type Projecto = Etapa & {
-  /** Visual grande no topo da página do projecto. */
+  /** Imagem do cartão na grelha de projectos, ao alto. */
   cover?: Imagem;
+  /** Visual grande no topo da página do projecto, ao largo. Sem ela, a página
+   *  abre com a `cover`. */
+  abertura?: Imagem;
   role?: Texto;
   /** Galeria no fim da página. */
   gallery?: Imagem[];
+  /** Trabalhos feitos dentro deste projecto. Juntar tudo numa galeria só
+   *  apagava onde acaba um trabalho e começa o outro. */
+  trabalhos?: Trabalho[];
+  /** A identidade do projecto: logótipos, marcas, variantes. Abre a secção de
+   *  trabalhos, porque é o que os atravessa a todos. */
+  marca?: Imagem[];
+};
+
+/** Um trabalho feito dentro de um projecto. Os clientes não são nomeados: o
+ *  que se mostra é o trabalho, numerado pela ordem em que aparece. */
+export type Trabalho = {
+  numero: number;
+  /** O que foi produzido, numa linha. */
+  resumo?: Texto;
+  imagens: Imagem[];
 };
 
 /* ---------- Finanças ---------- */
@@ -168,4 +193,22 @@ export type Interesse = {
   title: Texto;
   description?: Texto;
   images?: Imagem[];
+};
+
+/* ---------- Recomendações ---------- */
+
+export type Recomendacao = {
+  /** Excerto copiado da carta, palavra a palavra. Fica na língua em que foi
+   *  escrita: traduzir uma citação era pôr na boca de quem assina frases que
+   *  não escreveu. */
+  citacao: string;
+  autor: string;
+  /** Cargo de quem assina, tal como aparece na carta. */
+  cargo?: Texto;
+  instituicao?: string;
+  /** A relação com quem assina, numa linha: onde e quando. */
+  contexto?: Texto;
+  data?: Texto;
+  /** A carta completa, quando o dono decidir publicá-la. */
+  carta?: Ficheiro;
 };

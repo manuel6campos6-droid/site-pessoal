@@ -14,7 +14,7 @@ export const interesses: Interesse[] = [
     title: { en: "Travel", pt: "Viagens" },
     description: {
       en: "Backpacking and cultural exploration.",
-      pt: "Viagens de mochila às costas e exploração cultural.",
+      pt: "Viajar de mochila às costas e conhecer outras culturas.",
     },
   },
 ];

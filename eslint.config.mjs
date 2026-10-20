@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // O deploy do Netlify deixa aqui codigo gerado. Sem esta linha, o gate
+    // acusa milhares de problemas em ficheiros que ninguem escreveu.
+    ".netlify/**",
   ]),
 ]);
 

@@ -9,11 +9,11 @@ export function GrelhaDeProjectos() {
   if (projectos.length === 0) return <Vazio marcador="[PROJECTS]" alto />;
 
   return (
-    <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-x-10 md:gap-y-20">
+    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
       {projectos.map((p, i) => (
-        // Cada segundo cartão desce um pouco no computador, para a grelha não
-        // ficar com duas linhas perfeitamente alinhadas.
-        <Revelar key={p.slug} delay={(i % 2) * 0.08} className={i % 2 === 1 ? "md:mt-16" : ""}>
+        // Os cartoes ficam lado a lado e da mesma altura: com blocos cheios, o
+        // degrau de uma coluna sobre a outra lia-se como desalinhamento.
+        <Revelar key={p.slug} delay={(i % 2) * 0.08} className="h-full">
           <ProjectCard projecto={p} />
         </Revelar>
       ))}

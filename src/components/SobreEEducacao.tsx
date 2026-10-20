@@ -113,14 +113,20 @@ export function SobreEEducacao() {
 
       <div className="md:col-span-4 md:col-start-9">
         <Revelar delay={0.08}>
-          <Figura imagem={perfil.portrait} ratio="4/5" marcador="[PORTRAIT]" />
+          {perfil.portrait ? (
+            <Figura imagem={perfil.portrait} ratio="4/5" marcador="[PORTRAIT]" />
+          ) : null}
           {perfil.location ? (
-            <p className="mono-label mt-4 text-ink-3">{t(perfil.location, idioma)}</p>
+            <p
+              className={`mono-label text-ink-3 ${perfil.portrait ? "mt-4" : ""}`}
+            >
+              {t(perfil.location, idioma)}
+            </p>
           ) : null}
 
-          {/* Competências e línguas: uma coluna de dados ao lado do retrato,
-              sem ocupar a leitura principal. */}
-          <dl className="hairline mt-10 flex flex-col gap-6 pt-8 text-sm">
+          {/* Competências e línguas: uma coluna de dados ao lado do texto, sem
+              ocupar a leitura principal. */}
+          <dl className="hairline mt-8 flex flex-col gap-6 pt-8 text-sm">
             <div>
               <dt className="mono-label text-ink-3">
                 {idioma === "pt" ? "Línguas" : "Languages"}

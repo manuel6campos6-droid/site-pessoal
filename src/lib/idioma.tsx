@@ -10,13 +10,14 @@ import type { Idioma } from "@/data/types";
 
 type Estado = { idioma: Idioma; alternar: () => void };
 
-const Contexto = createContext<Estado>({ idioma: "en", alternar: () => {} });
+const Contexto = createContext<Estado>({ idioma: "pt", alternar: () => {} });
 
 const CHAVE = "idioma";
 
 /** O idioma escolhido vive no armazenamento do browser, que é estado externo ao
  *  React. Lê-se com useSyncExternalStore para o servidor desenhar sempre em
- *  inglês e o cliente corrigir na primeira leitura, sem cascata de renders. */
+ *  português e o cliente corrigir na primeira leitura, sem cascata de renders.
+ *  O site é de um português e é lido sobretudo cá: o inglês é a alternativa. */
 const ouvintes = new Set<() => void>();
 
 function subscrever(ouvinte: () => void) {
@@ -27,22 +28,22 @@ function subscrever(ouvinte: () => void) {
 function ler(): Idioma {
   try {
     const guardado = window.localStorage.getItem(CHAVE);
-    return guardado === "pt" ? "pt" : "en";
+    return guardado === "en" ? "en" : "pt";
   } catch {
-    // Armazenamento bloqueado (janela privada, cookies fechados): fica inglês.
-    return "en";
+    // Armazenamento bloqueado (janela privada, cookies fechados): fica português.
+    return "pt";
   }
 }
 
 function lerNoServidor(): Idioma {
-  return "en";
+  return "pt";
 }
 
 export function FornecedorDeIdioma({ children }: { children: React.ReactNode }) {
   const idioma = useSyncExternalStore(subscrever, ler, lerNoServidor);
 
   const alternar = useCallback(() => {
-    const proximo: Idioma = ler() === "en" ? "pt" : "en";
+    const proximo: Idioma = ler() === "pt" ? "en" : "pt";
     try {
       window.localStorage.setItem(CHAVE, proximo);
     } catch {

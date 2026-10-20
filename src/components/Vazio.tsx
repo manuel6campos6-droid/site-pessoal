@@ -23,7 +23,7 @@ export function Vazio({
 
   return (
     <div
-      className={`flex flex-col items-start justify-center gap-3 rounded-lg border border-dashed p-8 md:p-12 ${
+      className={`flex flex-col items-start justify-center gap-3 rounded-[var(--radius-cartao)] border border-dashed p-8 md:p-12 ${
         alto ? "min-h-64 md:min-h-80" : "min-h-40"
       } ${
         escura

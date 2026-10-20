@@ -26,7 +26,7 @@ export function SystemDiagram({
       {passos.map((passo, i) => (
         <li key={i} className="flex flex-1 items-center gap-3 md:flex-col md:items-stretch">
           <div
-            className={`flex-1 rounded-lg border p-4 ${
+            className={`flex-1 rounded-[var(--radius-etiqueta)] border p-4 ${
               escura ? "border-night-rule bg-night-2" : "border-rule bg-paper-2/60"
             }`}
           >

@@ -3,31 +3,47 @@
 /* Design system. Nenhum componente escreve cores à mão: tudo sai destes tokens.
    Mudar o acento aqui muda o site inteiro. */
 @theme {
-  /* Fundo quente, texto quase preto, cinzentos para o secundário. */
-  --color-paper: #faf8f5;
-  --color-paper-2: #f2eee8;
-  --color-ink: #12100e;
-  --color-ink-2: #4a463f;
-  --color-ink-3: #8c877d;
-  --color-rule: #e2dcd2;
+  /* Paleta da Apple: branco puro para o conteudo e um cinzento frio para as
+     faixas que separam seccoes. O texto nunca e preto absoluto, e os
+     secundarios sao os mesmos cinzentos que a apple.com usa. */
+  --color-paper: #ffffff;
+  --color-paper-2: #f5f5f7;
+  --color-ink: #1d1d1f;
+  --color-ink-2: #6e6e73;
+  --color-ink-3: #86868b;
+  --color-rule: #d2d2d7;
 
-  /* Secções escuras, para contraste pontual. */
-  --color-night: #12100e;
-  --color-night-2: #1c1a17;
-  --color-night-ink: #f5f2ec;
-  --color-night-ink-2: #a39d92;
-  --color-night-rule: #2e2b26;
+  /* Seccoes escuras: o mesmo quase-preto que eles usam nas paginas de produto. */
+  --color-night: #000000;
+  --color-night-2: #1d1d1f;
+  --color-night-ink: #f5f5f7;
+  --color-night-ink-2: #86868b;
+  --color-night-rule: #424245;
 
-  /* Um único acento. */
-  --color-accent: #8a5a44;
-  --color-accent-soft: #e8ddd4;
+  /* Um único acento: o azul de ligacao da Apple. O tom claro serve para
+     fundos de etiqueta, onde o azul cheio nao deixaria ler o texto. */
+  --color-accent: #0071e3;
+  --color-accent-soft: #d8e8fb;
 
-  --font-display: var(--font-display), Georgia, serif;
-  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+  /* A San Francisco da Apple, pedida ao sistema operativo: o `-apple-system`
+     entrega-a no Safari e o `BlinkMacSystemFont` no Chrome do Mac. Quem abrir
+     de Windows ou Android nao a tem instalada e cai na grotesca mais proxima
+     que ai existe, por esta ordem. */
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Segoe UI Variable Display", "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI Variable Text", "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* Ritmo vertical das secções. */
-  --spacing-section: 5.5rem;
+  /* Ritmo vertical das secções. Mais folgado que o editorial: o desenho da
+     Apple assenta em espaco branco largo entre blocos. */
+  --spacing-section: 7rem;
+
+  /* Cantos arredondados, sempre o mesmo par: cartoes grandes e etiquetas. */
+  --radius-cartao: 1.125rem;
+  --radius-etiqueta: 0.75rem;
 }
 
 @layer base {
@@ -79,16 +95,71 @@
     color: var(--color-ink-3);
   }
 
-  /* Grão de papel: um ruído muito ténue por cima de tudo, que tira ao fundo o
-     aspecto de branco digital chapado. Não intercepta o rato. */
-  .grao::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    pointer-events: none;
-    opacity: 0.022;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Cartao: a superficie que a Apple usa para tudo o que e um bloco de
+     conteudo. Sem sombra e sem risca, e a diferenca de fundo que o separa da
+     pagina, e por isso o cartao inverte-se: cinzento sobre branco, branco
+     sobre uma seccao cinzenta, onde de outro modo desaparecia. */
+  .cartao {
+    background-color: var(--color-paper-2);
+    border-radius: var(--radius-cartao);
+    overflow: hidden;
+  }
+  .bg-paper-2 .cartao,
+  .cartao .cartao {
+    background-color: var(--color-paper);
+  }
+  /* Sobre seccao escura o cinzento claro desaparecia: aqui o cartao sobe do
+     preto em vez de descer do branco. */
+  .cartao-escuro {
+    background-color: var(--color-night-2);
+    border-radius: var(--radius-cartao);
+    overflow: hidden;
+  }
+
+  /* Botao em capsula, a forma que a Apple da a todas as accoes. O azul cheio
+     para a accao principal, o contorno para a secundaria; escurece ao passar
+     o rato, que e o unico sinal de que se pode carregar. */
+  .botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-radius: 980px;
+    padding: 0.7rem 1.35rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    background-color: var(--color-accent);
+    color: #fff;
+    transition: background-color 0.25s ease, opacity 0.25s ease;
+  }
+  .botao:hover {
+    background-color: #0060c7;
+  }
+  .botao-vazio {
+    background-color: transparent;
+    color: var(--color-accent);
+    box-shadow: inset 0 0 0 1px currentcolor;
+  }
+  .botao-vazio:hover {
+    background-color: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  }
+
+  /* Ligacao em azul com seta, o padrao de navegacao da apple.com. A seta
+     afasta-se ao passar o rato, o que confirma o clique antes de acontecer. */
+  .ligacao-azul {
+    color: var(--color-accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .ligacao-azul:hover {
+    text-decoration: underline;
+  }
+  .ligacao-azul .seta {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .ligacao-azul:hover .seta {
+    transform: translateX(3px);
   }
 
   /* Sublinhado que cresce do lado esquerdo ao passar o rato. Usa transform,
@@ -132,43 +203,60 @@
     }
   }
   /* Títulos grandes: o display encolhe com o ecrã sem partir a composição. */
+  /* Os titulos seguem o registo da Apple: peso forte e espaco entre letras
+     fechado. A San Francisco abre naturalmente nos tamanhos grandes, e sem
+     este aperto os titulos leem-se largos e moles. */
   .display-xl {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 600;
     /* O display em tamanhos grandes fecha o espaço entre letras; o kerning e as
        ligaturas fazem a diferença entre composição e texto esticado. */
     font-feature-settings: "kern" 1, "liga" 1;
-    line-height: 1.1;
-    letter-spacing: -0.015em;
-    font-size: clamp(1.5rem, 2.6vw, 2.125rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-size: clamp(2.5rem, 5.2vw, 4rem);
   }
   .display-lg {
     font-family: var(--font-display);
-    font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: -0.012em;
-    font-size: clamp(1.375rem, 2vw, 1.75rem);
+    font-weight: 600;
+    line-height: 1.07;
+    letter-spacing: -0.024em;
+    font-size: clamp(2.125rem, 4vw, 3.25rem);
   }
   .display-md {
     font-family: var(--font-display);
-    font-weight: 400;
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-    font-size: clamp(1.125rem, 1.4vw, 1.3125rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.018em;
+    font-size: clamp(1.25rem, 1.7vw, 1.5rem);
   }
   /* Etiqueta técnica: números de secção, categorias, metadados. */
   .num-tabular {
     font-variant-numeric: tabular-nums;
   }
+  /* Sobre-linha e etiqueta pequena. A Apple nao usa caixa alta espacada nas
+     suas: compoe-nas com a mesma letra do corpo, um pouco mais pequena e em
+     semibold. A versao monoespaçada fica para dados, na `.dado`. */
   .mono-label {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    line-height: 1.4;
+    text-transform: none;
+  }
+  /* Datas, periodos e medidas: aqui a mono paga-se, porque alinha os digitos
+     em coluna e os numeros deixam de bailar de linha para linha. */
+  .dado {
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
   }
   .prose-body {
-    font-size: clamp(0.9375rem, 0.9vw, 1rem);
-    line-height: 1.65;
+    font-size: clamp(1rem, 1vw, 1.0625rem);
+    line-height: 1.6;
+    letter-spacing: -0.003em;
     color: var(--color-ink-2);
   }
   .hairline {

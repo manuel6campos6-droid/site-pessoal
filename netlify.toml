@@ -1,0 +1,9 @@
+# O site é Next.js, não HTML estático: o plugin trata do que o Next precisa no
+# servidor (imagens optimizadas, rotas). Sem ele, o deploy sobe a pasta crua e
+# as páginas não abrem.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

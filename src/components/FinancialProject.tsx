@@ -15,7 +15,7 @@ export function FinancialProject({ projecto }: { projecto: ProjectoFinanceiro })
   const temTitulo = temConteudo(projecto.title);
 
   return (
-    <article className="rounded-lg border border-rule bg-paper p-6 md:p-10">
+    <article className="cartao p-6 md:p-10">
       <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
         <div className="max-w-xl">
           {projecto.category ? (
