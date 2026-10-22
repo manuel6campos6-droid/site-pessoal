@@ -23,10 +23,6 @@ export const seccoes: Seccao[] = [
     id: "about",
     index: "01",
     label: { en: "About", pt: "Sobre" },
-    kicker: {
-      en: "Where I come from and what I am studying.",
-      pt: "De onde venho e o que estou a estudar.",
-    },
   },
   {
     id: "recommendations",

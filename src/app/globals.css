@@ -37,9 +37,9 @@
     sans-serif;
   --font-mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* Ritmo vertical das secções. Mais folgado que o editorial: o desenho da
-     Apple assenta em espaco branco largo entre blocos. */
-  --spacing-section: 7rem;
+  /* Ritmo vertical das secções. Reduzido de 7rem: a leitura ficava lenta
+     com 9 secções seguidas, cada uma com este espaço em cima e em baixo. */
+  --spacing-section: 3.5rem;
 
   /* Cantos arredondados, sempre o mesmo par: cartoes grandes e etiquetas. */
   --radius-cartao: 1.125rem;
