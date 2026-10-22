@@ -14,6 +14,13 @@ export const projectos: Projecto[] = [
     status: { en: "Active", pt: "Activo" },
     tagline: porPreencher(),
     description: porPreencher(),
+    abertura: {
+      src: "/tech/noite-site.jpg",
+      alt: {
+        en: "The NOITE website, with a row of party posters under the headline",
+        pt: "O site da NOITE, com uma fila de cartazes de festas por baixo do título",
+      },
+    },
     metrics: [
       { value: "600+", label: { en: "Downloads", pt: "Downloads" }, note: { en: "In one month", pt: "Num mês" } },
     ],
