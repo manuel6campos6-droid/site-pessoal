@@ -26,6 +26,10 @@ export const perfil: Perfil = {
       en: "I am also very fond of sport.",
       pt: "Também gosto muito de fazer desporto.",
     },
+    {
+      en: "I know how to code through vibe coding.",
+      pt: "Sei programar através de vibe coding.",
+    },
   ],
   location: { en: "Lisbon, Portugal", pt: "Lisboa, Portugal" },
   email: "manuel6campos6@gmail.com",
