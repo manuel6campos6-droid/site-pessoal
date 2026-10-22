@@ -87,5 +87,12 @@ export const projectosTecnicos: ProjectoTecnico[] = [
         },
       },
     ],
+    outcomes: [
+      {
+        value: "600+",
+        label: { en: "Downloads", pt: "Downloads" },
+        note: { en: "In one month", pt: "Num mês" },
+      },
+    ],
   },
 ];

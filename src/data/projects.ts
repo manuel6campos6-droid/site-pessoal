@@ -1,9 +1,23 @@
-import { type Projecto } from "./types";
+import { porPreencher, type Projecto } from "./types";
 
 // Ordem cronológica: é assim que a linha do tempo e a grelha os mostram.
 // O que está aqui vem do CV, tal como lá está escrito. Os blocos de caso de
 // estudo ficam por escrever, um a um.
 export const projectos: Projecto[] = [
+  {
+    slug: "noite",
+    name: "NOITE",
+    link: {
+      label: { en: "noiteapp.com", pt: "noiteapp.com" },
+      href: "https://noiteapp.com",
+    },
+    status: { en: "Active", pt: "Activo" },
+    tagline: porPreencher(),
+    description: porPreencher(),
+    metrics: [
+      { value: "600+", label: { en: "Downloads", pt: "Downloads" }, note: { en: "In one month", pt: "Num mês" } },
+    ],
+  },
   {
     slug: "kainzow",
     name: "Kainzow",
