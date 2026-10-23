@@ -30,7 +30,9 @@ export const actividades: Percurso[] = [
   },
   {
     organisation: "Baby VC",
-    period: "09/2026 – presente",
+    role: { en: "Fellow", pt: "Fellow" },
+    period: "10/2026 – presente",
+    location: { en: "Lisbon, Portugal", pt: "Lisboa, Portugal" },
   },
 ];
 

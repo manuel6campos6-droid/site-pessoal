@@ -21,6 +21,7 @@ export const projectosTecnicos: ProjectoTecnico[] = [
       "Supabase Edge Functions",
       "Claude API",
       "OpenAI API",
+      "AI Agents",
       "Expo Notifications",
       "React Native Maps",
       "EAS Build",
