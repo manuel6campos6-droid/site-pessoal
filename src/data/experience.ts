@@ -28,6 +28,10 @@ export const actividades: Percurso[] = [
     role: { en: "Volunteer", pt: "Voluntário" },
     period: "2024",
   },
+  {
+    organisation: "Baby VC",
+    period: "09/2026 – presente",
+  },
 ];
 
 /** Competências declaradas no CV, tal como lá estão. */
