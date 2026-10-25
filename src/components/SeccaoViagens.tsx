@@ -1,11 +1,10 @@
 "use client";
 
-import { fotosDeViagem, notaDeViagem, totalDePaises, viagens } from "@/data/travel";
+import { fotosDeViagem, notaDeViagem, totalDePaises } from "@/data/travel";
 import { useIdioma } from "@/lib/idioma";
 import { t } from "@/lib/texto";
 import { Galeria } from "./Galeria";
 import { Revelar } from "./Revelar";
-import { TravelMap } from "./TravelMap";
 
 export function SeccaoViagens() {
   const { idioma } = useIdioma();
@@ -32,11 +31,6 @@ export function SeccaoViagens() {
           </div>
         </div>
       </Revelar>
-
-      <Revelar>
-        <TravelMap viagens={viagens} />
-      </Revelar>
-
 
       <Revelar>
         <h3 className="mono-label mb-8 text-night-ink-2">
