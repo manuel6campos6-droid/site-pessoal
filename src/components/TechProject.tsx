@@ -87,6 +87,7 @@ export function TechProject({
       <div className={invertido ? "md:order-1" : ""}>
         <ProductDemo
           imagem={projecto.screenshots?.[0]}
+          video={projecto.video}
           url={projecto.link?.href.replace(/^https?:\/\//, "").replace(/\/$/, "")}
           escura={escura}
         />

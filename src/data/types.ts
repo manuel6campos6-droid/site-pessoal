@@ -163,6 +163,9 @@ export type ProjectoTecnico = {
   link?: Link;
   repo?: Link;
   screenshots?: Imagem[];
+  /** Vídeo que substitui a primeira captura na janela de produto. Caminho em
+   *  `public/`, sem legenda: fala por si. */
+  video?: string;
   /** Passos de um fluxo, desenhados como diagrama. */
   flow?: PassoFluxo[];
   outcomes?: Metrica[];

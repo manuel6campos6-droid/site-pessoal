@@ -1,16 +1,20 @@
 "use client";
 
 import type { Imagem } from "@/data/types";
+import { comBase } from "@/lib/caminho";
 import { Figura } from "./Figura";
 
-/** Janela de browser em volta de uma captura. Dá contexto de produto a uma
- *  imagem sem precisar de um ecrã real. */
+/** Janela de browser em volta de uma captura ou de um vídeo. Dá contexto de
+ *  produto a uma imagem sem precisar de um ecrã real. Com `video`, mostra o
+ *  vídeo com controlos em vez da captura; sem autoplay, porque este tem som. */
 export function ProductDemo({
   imagem,
+  video,
   url,
   escura = false,
 }: {
   imagem?: Imagem;
+  video?: string;
   url?: string;
   escura?: boolean;
 }) {
@@ -40,12 +44,27 @@ export function ProductDemo({
         </span>
       </div>
       <div className="p-2">
-        <Figura
-          imagem={imagem}
-          ratio="16/10"
-          marcador="[PRODUCT SCREENSHOT]"
-          escura={escura}
-        />
+        {video ? (
+          <div
+            className="relative w-full max-w-full overflow-hidden rounded-[var(--radius-cartao)]"
+            style={{ aspectRatio: "16/10" }}
+          >
+            <video
+              src={comBase(video)}
+              poster={imagem ? comBase(imagem.src) : undefined}
+              controls
+              playsInline
+              className="absolute inset-0 size-full object-cover"
+            />
+          </div>
+        ) : (
+          <Figura
+            imagem={imagem}
+            ratio="16/10"
+            marcador="[PRODUCT SCREENSHOT]"
+            escura={escura}
+          />
+        )}
       </div>
     </div>
   );
