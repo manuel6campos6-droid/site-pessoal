@@ -6,8 +6,8 @@ export const projectosTecnicos: ProjectoTecnico[] = [
     title: { en: "NOITE", pt: "NOITE" },
     kind: { en: "App and website", pt: "App e site" },
     description: {
-      en: "A nightlife radar for university students in Portugal: what is happening tonight, where it is on the map and who is going. An iOS and Android app plus a website, sharing the same catalogue, with 600+ downloads. The platform is run by AI agents.",
-      pt: "Um guia da vida nocturna universitária em Portugal: o que há esta noite, onde é e quem vai. Existe como app para iOS e Android e como site, com a mesma informação, e tem mais de 600 downloads. A plataforma é gerida por agentes de IA.",
+      en: "A nightlife radar for university students in Portugal: what is happening tonight, where it is on the map and who is going. An iOS and Android app plus a website, sharing the same catalogue, with 600+ downloads. The platform runs on AI agents, about 95% of the operation.",
+      pt: "Um guia da vida nocturna universitária em Portugal: o que há esta noite, onde é e quem vai. Existe como app para iOS e Android e como site, com a mesma informação, e tem mais de 600 downloads. A plataforma corre em agentes de IA, cerca de 95% da operação.",
     },
     video: "/tech/noite-live-more.mp4",
     stack: [
@@ -94,6 +94,11 @@ export const projectosTecnicos: ProjectoTecnico[] = [
         value: "600+",
         label: { en: "Downloads", pt: "Downloads" },
         note: { en: "In one month", pt: "Num mês" },
+      },
+      {
+        value: "95%",
+        label: { en: "Run by AI agents", pt: "Gerida por agentes de IA" },
+        note: { en: "Of the operation", pt: "Da operação" },
       },
     ],
   },
